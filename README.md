@@ -31,7 +31,15 @@ You can create a first version of the advertisements in the database with:
 node install_db.js
 ```
 
+*The information will be loaded from the file **ads.json*** located in the root directory
+
 **Warning**: This action will delete all the information in the "Advertise" collection. Please run this command only if you are ok with this.
+
+## API Use
+
+### List all advertisments
+
+GET /api/ads
 
 ## Author
 

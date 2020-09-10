@@ -6,6 +6,7 @@ const advertisementSchema = mongoose.Schema({
   name: { type: String, index: true},
   sell: Boolean,
   price: { type: Number, index: true},
+  currency: String,
   picture: String,
   tags: [String]
 },

@@ -5,8 +5,6 @@ require('dotenv').config();
 const readline = require('readline');
 const conn = require('./lib/connectMongoose');
 const Advertisement = require('./models/Advertisement');
-const fs = require('fs');
-
 
 conn.once('open', async () => {
   try {
@@ -31,13 +29,12 @@ conn.once('open', async () => {
 
 async function initAdvertisements() {
   await Advertisement.deleteMany();
-  console.log('Colección de anuncios eliminada...');
-  // cargar los documentos iniciales
-  console.log('Cargando agentes...');
-  const result = await Advertisement.insertMany([
-    { name: 'Smith', age: 36 },
-    { name: 'Brown', age: 19 }
-  ]);
+  console.log('Colección de anuncios eliminada ...');
+  // cargar información inicial desde fichero
+  console.log('Cargando anuncios desde ads.json ...');
+  const data = require('./ads.json');
+  console.log(data);
+  const result = await Advertisement.insertMany(data.advertisements);
   console.log(`Se han creado ${result.length} avisos.`);
 }
 

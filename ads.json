@@ -1,0 +1,20 @@
+{
+  "advertisements" : [
+    {
+      "name": "Frankenstein primera edición",
+      "sell": false,
+      "price": 1600,
+      "currency": "USD",
+      "picture": "libro.jpg",
+      "tags": ["libro", "usado", "raro"]
+    },
+    {
+      "name": "Notebook Acer",
+      "sell": true,
+      "price": 600,
+      "currency": "EUR",
+      "picture": "notebook.jpg",
+      "tags": ["computador", "usado"]
+    }
+  ]
+}
