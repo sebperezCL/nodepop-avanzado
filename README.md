@@ -17,6 +17,22 @@ npm install
 npm start
 ```
 
+## Dev run
+
+```sh
+npm run dev
+```
+
+## Load initial data
+
+You can create a first version of the advertisements in the database with:
+
+```sh
+node install_db.js
+```
+
+**Warning**: This action will delete all the information in the "Advertise" collection. Please run this command only if you are ok with this.
+
 ## Author
 
 👤 **Sebastián Pérez**
