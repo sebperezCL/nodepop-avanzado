@@ -37,9 +37,24 @@ node install_db.js
 
 ## API Use
 
-### List all advertisments
+### List all advertisements
 
 GET /api/ads
+
+### Create new advertisement
+
+POST /api/ads
+
+body:
+{
+  name: string,
+  sell: boolean,
+  price: number,
+  currency: string,
+  tags: [string]
+}
+
+file: picture
 
 ## Author
 
