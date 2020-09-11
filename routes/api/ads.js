@@ -4,7 +4,6 @@ const router = express.Router();
 const Advertisement = require('../../models/Advertisement');
 const createError = require('http-errors');
 const { Mongoose } = require('mongoose');
-//const { response } = require('../../app');
 
 const storage = multer.diskStorage({
   destination: function( req, file, cb ) {
@@ -19,11 +18,28 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage});
 
 /* GET /api/ads */
-
+/* Entrega todos los anuncios disponibles */
 router.get('/', async function(req, res, next) {
   try {
-    const ads = await Advertisement.find();
-    res.json({ results: ads });
+    const ads = await Advertisement.find().select('-__v');
+    const result = {
+      count: ads.length,
+      advertisements: ads
+    };
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+});
+
+/* GET /api/ads */
+/* Entrega todos los anuncios disponibles */
+router.get('/:_id', async function(req, res, next) {
+  try {
+    const _id = req.params._id;
+    const ads = await Advertisement.findOne({ _id: _id}).select('-__v');
+    const result = { advertisement: ads };
+    res.json(result);
   } catch (error) {
     next(error);
   }
