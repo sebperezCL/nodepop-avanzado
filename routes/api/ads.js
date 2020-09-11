@@ -22,7 +22,7 @@ const upload = multer({ storage: storage});
 
 router.get('/', async function(req, res, next) {
   try {
-    const ads = await Advertisment.find();
+    const ads = await Advertisement.find();
     res.json({ results: ads });
   } catch (error) {
     next(error);
@@ -47,9 +47,12 @@ router.post('/', upload.single('picture'), async function (req, res, next) {
       tags: req.body.tags
     });
 
+    /* La función save retorna un error si hay algún problema con la validación
+    contra el schema, el error es manejado por el error handler con código 400.
+    En caso contrario (éxito) retorna el json del documento recién guardado */
     await ad.save((error, ad) => {
       if(!error) {
-        res.json(ad);
+        res.json({result: ad});
       } else {
         next(createError(400, error.message));
         return;
