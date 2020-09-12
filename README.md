@@ -41,6 +41,43 @@ node install_db.js
 
 GET /api/ads
 
+### Filtered list of advertisements
+
+GET /api/ads?name=&price=&tag=&currency=&sell&limit=&skip=&sort=
+
+* name parameter can be a substring of the full name
+* price parameter should be one of this options: 
+  * integer: exact match
+  * -integer: search ads with price lower than the value received
+  * integer-: search ads with price greater than the value received
+  * integer1-integer2: search ads with price between integer1 and integer2
+* Multiple tag values can be sent (tag=value1&tag=value2&...tag=value-n)
+* currency valid values are USD, EUR or CLP
+* Send sell=true to search products for sale and sell=false to search products to buy
+
+{
+    "count": 1,
+    "advertisements": [
+        {
+            "tags": [
+                "libro",
+                "usado",
+                "raro"
+            ],
+            "_id": "5f5adf44b9f5141010914b61",
+            "name": "Frankenstein primera edición",
+            "sell": false,
+            "price": 1600,
+            "currency": "USD",
+            "picture": "libro.jpg"
+        }
+    ]
+}
+
+### Search one advertisement
+
+GET /api/ads/_id
+
 ### Create new advertisement
 
 POST /api/ads
@@ -55,6 +92,10 @@ body:
 }
 
 file: picture
+
+### Delete one advertisement
+
+DELETE /api/ads/_id
 
 ## Author
 

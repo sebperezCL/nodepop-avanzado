@@ -41,12 +41,12 @@ const advertisementSchema = mongoose.Schema({
 }
 );
 
-advertisementSchema.statics.lista = function(filter, limit, skip, sort, fields) {
+advertisementSchema.statics.lista = function(filter, limit, skip, sort) {
   const query = Advertisement.find(filter);
   query.limit(limit);
   query.skip(skip);
   query.sort(sort);
-  query.select(fields);
+  query.select('-__v');
   return query.exec();
 };
 
