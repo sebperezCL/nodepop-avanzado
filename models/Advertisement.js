@@ -24,7 +24,7 @@ const advertisementSchema = mongoose.Schema({
     required: [true, 'Field cannot be empty'],
     enum: {
       values: ['USD', 'EUR', 'CLP'],
-      message: 'Field valid values are only USD, EUR or CLP'
+      message: 'Valid values are only USD, EUR or CLP'
     }
   },
   picture: String,
@@ -40,6 +40,15 @@ const advertisementSchema = mongoose.Schema({
   autoIndex: process.env.NODE_ENV !== 'production'
 }
 );
+
+advertisementSchema.statics.lista = function(filter, limit, skip, sort, fields) {
+  const query = Advertisement.find(filter);
+  query.limit(limit);
+  query.skip(skip);
+  query.sort(sort);
+  query.select(fields);
+  return query.exec();
+};
 
 const Advertisement = mongoose.model('Advertisement', advertisementSchema);
 
