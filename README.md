@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to nodepop 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.0.0-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
 </p>
 
 > API para la venta de artículos de segunda mano
@@ -34,6 +34,14 @@ node install_db.js
 *The information will be loaded from the file **ads.json*** located in the root directory
 
 **Warning**: This action will delete all the information in the "Advertise" collection. Please run this command only if you are ok with this.
+
+## View advertisements
+
+You can retrieve all the ads in a "human readable" format calling the url:
+
+http://localhost:3000/?name=&tag=&currency=&price=&sort=&limit=&start=
+
+or simply http://localhost:3000/ and use the form to search the ads
 
 ## API Use
 
