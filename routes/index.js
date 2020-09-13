@@ -15,14 +15,13 @@ router.get('/', async function(req, res, next) {
       count: ads.length,
       advertisements: ads
     };
-    console.log(result);
 
     res.locals.ads = result;
 
   } catch (error) {
     next(error);
   }
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Buscador de anuncios' });
 });
 
 module.exports = router;
