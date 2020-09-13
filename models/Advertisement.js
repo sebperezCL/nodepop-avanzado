@@ -41,7 +41,7 @@ const advertisementSchema = mongoose.Schema({
 }
 );
 
-advertisementSchema.statics.lista = function(req) { 
+advertisementSchema.statics.lista = function(req) {
   // recibimos el objeto req desde el router, toda esta lógica la ubiqué en el modelo
   // para poder reutilizarla cuando es llamada desde la vista index
   const filter = {};
@@ -98,13 +98,13 @@ advertisementSchema.statics.lista = function(req) {
   }
 
   const limit = parseInt(req.query.limit || 15);
-  const skip = parseInt(req.query.skip);
+  const start = parseInt(req.query.start);
   const sort = req.query.sort;
 
 
   const query = Advertisement.find(filter);
   query.limit(limit);
-  query.skip(skip);
+  query.skip(start);
   query.sort(sort);
   query.select('-__v');
   return query.exec();

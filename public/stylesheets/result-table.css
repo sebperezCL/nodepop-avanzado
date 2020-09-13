@@ -1,0 +1,139 @@
+table {
+  border: 0;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.3em;
+  padding-bottom: 1rem;
+  text-align: left;
+}
+
+.circle {
+  background-color: green;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin-left: 15px;
+}
+
+.circle.out-stock {
+  background-color: red;
+}
+
+table thead {
+  border: none;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+table tr {
+  border-bottom: 3px solid #ddd;
+  background-color: #f8f8f8;
+  color: var(--eerie-black);
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: .625em;
+  padding: .35em;
+}
+
+table td {
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  font-size: .8em;
+  text-align: right;
+  padding: .625em;
+}
+
+.stock-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+table td::before {
+  /*
+  * aria-label has no advantage, it won't be read inside a table
+  content: attr(aria-label);
+  */
+  content: attr(data-label);
+  float: left;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+table td:last-child {
+  border-bottom: 0;
+}
+
+@media (min-width: 768px){
+  .results {
+    margin-left: 10px;
+  }
+
+  table {
+    table-layout: auto;
+    /*border: 1px solid #ccc;*/
+    width: 730px;
+  }
+
+  table thead {
+    position: relative;
+  }
+
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+    padding-top: 1.5rem;
+  }
+
+  table tr {
+    display: table-row;
+    border: 1px solid #ddd;
+  }
+
+  table th,
+  table td {
+    display: table-cell;
+    text-align: center;
+  }
+
+  .stock-wrapper {
+    justify-content: center;
+  }
+
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  table td::before {
+    content: '';
+  }
+}
+
+@media (min-width: 900px) {
+  table {
+    width: 870px;
+  }
+}
+
+@media (min-width: 1200px) {
+  table {
+    width: 950px;
+  }
+
+  .results {
+    grid-column: 2 / 3;
+  }
+}

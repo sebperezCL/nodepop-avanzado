@@ -1,8 +1,25 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+    --navbar-height: 70px;
+
+    /* Definición de colores de la paleta https://coolors.co/cdcdcd-232323-ededed-7e5a9b-9a48d0 */
+    --light-gray: hsla(0, 0%, 80%, 1);
+    --eerie-black: hsla(0, 0%, 14%, 1);
+    --cultured: hsla(0, 0%, 93%, 1);
+    --royal-purple: hsla(273, 27%, 48%, 1);
+    --dark-orchid: hsla(276, 59%, 55%, 1);
+}
+
+* {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    text-decoration: none;
 }
+
+a:hover {
+    text-decoration: underline;
+}
+
