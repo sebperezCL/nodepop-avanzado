@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./bin/www",
-    "dev": "cross-env DEBUG=nodeapi:* PORT=3000 NODE_ENV=development nodemon -e ejs,js,mjs,json"
+    "dev": "cross-env DEBUG=nodeapi:* PORT=3000 NODE_ENV=development nodemon -e ejs,js,mjs,json",
+    "init-db": "node ./install_db.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

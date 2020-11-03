@@ -41,48 +41,48 @@ const advertisementSchema = mongoose.Schema({
 }
 );
 
-advertisementSchema.statics.lista = function(req) {
+advertisementSchema.statics.lista = function(params) {
   // recibimos el objeto req desde el router, toda esta lógica la ubiqué en el modelo
   // para poder reutilizarla cuando es llamada desde la vista index
   const filter = {};
-  if(req.query.name) {
+  if(params.name) {
     // Uso expresiones regulares para hacer un filtro "like" con la opción 'i' que no sea case sensitive
-    filter.name = new RegExp('^' + req.query.name,'i');
+    filter.name = new RegExp('^' + params.name,'i');
   }
 
-  if(req.query.sell) {
-    filter.sell = req.query.sell;
+  if(params.sell) {
+    filter.sell = params.sell;
   }
 
-  if(req.query.tag) {
-    filter.tags = { $all: req.query.tag }; //busca 1 o más tags en los anuncios disponibles
+  if(params.tag) {
+    filter.tags = { $all: params.tag }; //busca 1 o más tags en los anuncios disponibles
   }
 
-  if(req.query.currency) {
-    filter.currency = req.query.currency.toUpperCase();
+  if(params.currency) {
+    filter.currency = params.currency.toUpperCase();
   }
 
   // Verifico si viene el parámetro price
-  if(req.query.price) {
+  if(params.price) {
 
-    if(req.query.price.match(/^-?\d+$/)) {
+    if(params.price.match(/^-?\d+$/)) {
       // tipo number o -number
-      const valor = Number(req.query.price);
+      const valor = Number(params.price);
       if(valor < 0) {
         filter.price = { $lte: Math.abs(valor) }; // Busco los precios menores al indicado
       } else {
-        filter.price = req.query.price; // Busco el precio exacto
+        filter.price = params.price; // Busco el precio exacto
       }
     }
 
-    if(req.query.price.match(/^\d+-$/)) {
+    if(params.price.match(/^\d+-$/)) {
       // tipo number-
-      filter.price = { $gte: parseInt(req.query.price) };
+      filter.price = { $gte: parseInt(params.price) };
     }
 
-    if(req.query.price.match(/^-?\d+-\d+$/)) {
+    if(params.price.match(/^-?\d+-\d+$/)) {
       // tipo number-number
-      const priceArray = req.query.price.split('-');
+      const priceArray = params.price.split('-');
       filter.price = { $gte: priceArray[0], $lte: priceArray[1] };
     }
 
@@ -97,9 +97,9 @@ advertisementSchema.statics.lista = function(req) {
     }
   }
 
-  const limit = parseInt(req.query.limit || 15);
-  const start = parseInt(req.query.start);
-  const sort = req.query.sort;
+  const limit = parseInt(params.limit || 15);
+  const start = parseInt(params.start);
+  const sort = params.sort;
 
 
   const query = Advertisement.find(filter);
