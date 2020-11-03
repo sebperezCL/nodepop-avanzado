@@ -3,7 +3,6 @@ const multer = require('multer');
 const router = express.Router();
 const Advertisement = require('../../models/Advertisement');
 const createError = require('http-errors');
-const { Mongoose } = require('mongoose');
 
 const storage = multer.diskStorage({
   destination: function( req, file, cb ) {

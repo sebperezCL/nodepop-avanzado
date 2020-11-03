@@ -28,7 +28,7 @@ npm run dev
 You can create a first version of the advertisements in the database with:
 
 ```sh
-node install_db.js
+npm run init-db
 ```
 
 *The information will be loaded from the file **ads.json*** located in the root directory

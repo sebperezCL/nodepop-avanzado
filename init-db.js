@@ -5,6 +5,7 @@ require('dotenv').config();
 const readline = require('readline');
 const conn = require('./lib/connectMongoose');
 const Advertisement = require('./models/Advertisement');
+const User = require('./models/User');
 
 conn.once('open', async () => {
   try {
@@ -17,6 +18,7 @@ conn.once('open', async () => {
     }
 
     await initAdvertisements();
+    await initUsuarios();
 
     conn.close();
 
@@ -33,9 +35,22 @@ async function initAdvertisements() {
   // cargar información inicial desde fichero
   console.log('Cargando anuncios desde ads.json ...');
   const data = require('./ads.json');
-  console.log(data);
   const result = await Advertisement.insertMany(data.advertisements);
   console.log(`Se han creado ${result.length} avisos.`);
+}
+
+async function initUsuarios() {
+  // Borramos la colección de usuarios en la db (si existe)
+  await User.deleteMany();
+  console.log('Colección de usuarios eliminada...');
+
+  // cargar los documentos iniciales
+  console.log('Cargando usuarios...');
+  const result = await User.insertMany([
+    { email: 'user@example.com', password: await User.hashPassword('1234') },
+    { email: 'sebperez@gmail.com', password: await User.hashPassword('1234') },
+  ]);
+  console.log(`Se han creado ${result.length} usuarios.`);
 }
 
 
