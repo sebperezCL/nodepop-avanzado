@@ -12,8 +12,17 @@
   </head>
   <body>
     <header class="header">
+      <div class="switch-container">
+        <!-- Cambiar idioma -->
+        <span class="lang-name">ES</span>
+        <label class="switch">
+          <input id="lang_switch" type="checkbox">
+          <span class="slider round"></span>
+        </label>
+        <span class="lang-name">EN</span>
+      </div>
       <nav class="navbar">
-        <span class="menu-title-big">Buscador Web de Anuncios - Ingrese los filtros</span>
+        <span class="menu-title-big"><%= __('Ads web search') %> - <%= __('Enter parameters to filter') %></span>
         <div id="menuToggle">
           <input type="checkbox" />
           <span class="span1"></span>
@@ -21,48 +30,48 @@
           <span class="span3"></span>
           <form name="search-form" id="search-form" method="GET">
             <ul id="menu">
-              <li class="menu-title">Ingrese los filtros</li>
+              <li class="menu-title"><%= __('Enter parameters to filter') %></li>
               <li>
-                <label for="name">Nombre</label>
-                <input type="text" id="name" name="name" placeholder="Ingrese nombre del anuncio">
+                <label for="name"><%= __('Name') %></label>
+                <input type="text" id="name" name="name" placeholder="<%= __('Name of the advertisement') %>">
               </li>
               <li>
                 <label for="tag">Tag</label>
-                <input type="text" id="tag" name="tag" placeholder="Ingrese un tag">
+                <input type="text" id="tag" name="tag" placeholder="<%= __('Enter a tag') %>">
               </li>
               <li>
-                <label for="currency">Moneda</label>
+                <label for="currency"><%= __('Currency') %></label>
                 <select name="currency" id="currency">
-                  <option value="" disabled selected>Seleccione la Moneda</option>
+                  <option value="" disabled selected><%= __('Select Currency') %></option>
                   <option value="USD">USD</option>
                   <option value="EUR">EUR</option>
                   <option value="CLP">CLP</option>
                 </select>
               </li>
               <li>
-                <label for="price">Precio</label>
-                <input type="text" id="price" name="price" placeholder="Ingrese un precio o un rango">
+                <label for="price"><%= __('Price') %></label>
+                <input type="text" id="price" name="price" placeholder="<%= __('Input a fixed price or rank') %>">
               </li>
               <li>
-                <label for="sort">Orden</label>
+                <label for="sort"><%= __('Sort') %></label>
                 <select name="sort" id="sort">
-                  <option value="" disabled selected>Seleccione el campo a ordenar</option>
-                  <option value="name">Nombre</option>
-                  <option value="sell">Venta/Compra</option>
-                  <option value="price">Precio</option>
-                  <option value="currency">Moneda</option>
+                  <option value="" disabled selected><%= __('Select field to sort') %></option>
+                  <option value="name"><%= __('Name') %></option>
+                  <option value="sell"><%= __('Sell/Buy') %></option>
+                  <option value="price"><%= __('Price') %></option>
+                  <option value="currency"><%= __('Currency') %></option>
                 </select>
               </li>
               <li>
-                <label for="limit">Límite</label>
-                <input type="text" id="limit" name="limit" placeholder="Ingrese cant. de registros">
+                <label for="limit"><%= __('Limit') %></label>
+                <input type="text" id="limit" name="limit" placeholder="<%= __('Input records quantity') %>">
               </li>
               <li>
                 <label for="start">Start</label>
-                <input type="text" id="start" name="start" placeholder="Ingrese la posición de partida">
+                <input type="text" id="start" name="start" placeholder="<%= __('Insert start position') %>">
               </li>
               <li id="submit-wrapper">
-                <button id="search-submit" type="submit"><i class="icon-search">Buscar</i></button>
+                <button id="search-submit" type="submit"><i class="icon-search"><%= __('Search') %></i></button>
               </li>
             </ul>
           </form>
@@ -74,26 +83,26 @@
     <main class="main">
       <div class="results">
         <table>
-          <caption>Resultados de la búsqueda - Encontrados <%=ads.count %> Anuncios</caption>
+          <caption><%= __('Search Results') %> - <%= __('Found') %> <%=ads.count %> <%= __('Advertisements') %></caption>
           <thead>
             <tr>
-              <th scope="col">Nombre</th>
-              <th scope="col">Venta/Compra</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Moneda</th>
-              <th scope="col">Tags</th>
-              <th scope="col">Imagen</th>
+              <th scope="col"><%= __('Name') %></th>
+              <th scope="col"><%= __('Sell/Buy') %></th>
+              <th scope="col"><%= __('Price') %></th>
+              <th scope="col"><%= __('Currency') %></th>
+              <th scope="col"><%= __('Tags') %></th>
+              <th scope="col"><%= __('Image') %></th>
             </tr>
           </thead>
           <tbody>
             <% ads.advertisements.forEach(ad => { %>
              <tr>
               <td data-label="Nombre"><%=ad.name%></td>
-              <td data-label="Venta/Compra"><% if(ad.sell) {%> Venta <%} else { %> Compra <% }%> </td>
+              <td data-label="Venta/Compra"><% if(ad.sell) {%> <%= __('Sell') %> <%} else { %> <%= __('Buy') %> <% }%> </td>
               <td data-label="Precio"><%=ad.price %></td>
               <td data-label="Moneda"><%=ad.currency %> </td>
               <td data-label="Tags"><%=ad.tags %> </td>
-              <td data-label="Imagen"><a href="/images/<%=ad.picture %>" target="blank">Ver</a></td>
+              <td data-label="Imagen"><a href="/images/<%=ad.picture %>" target="blank"><%= __('View') %></a></td>
             </tr>
             <% }) %>
           </tbody>
@@ -102,5 +111,6 @@
     </main>
     <footer class="footer">
     </footer>
+    <script src="/js/main.js"></script>
   </body>
 </html>

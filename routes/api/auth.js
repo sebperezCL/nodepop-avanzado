@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
   }
 
   // Crear JWT
-  jwt.sign({ _id: user._id, email: email }, process.env.JWT_SECRET, { expiresIn: '2s'}, (err, tokenJWT) => {
+  jwt.sign({ _id: user._id, email: email }, process.env.JWT_SECRET, { expiresIn: '2h'}, (err, tokenJWT) => {
     if (err) return next(err);
     // Enviar el JWT
     res.json({ tokenJWT: tokenJWT });

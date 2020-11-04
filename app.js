@@ -4,7 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
 const jwtAuth = require('./lib/jwtAuth');
 
 const app = express();
@@ -22,7 +21,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+// Setup de i18n
+const i18n = require('./lib/i18nConfigure');
+app.use(i18n.init);
+
+app.use('/', require('./routes/index'));
+app.use('/change-lang', require('./routes/change-lang'));
 
 /**
  * Llamadas a la API

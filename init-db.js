@@ -55,6 +55,7 @@ async function initUsuarios() {
 
 
 function askUser(textoPregunta) {
+  // eslint-disable-next-line no-unused-vars
   return new Promise((resolve, reject) => {
     const rl = readline.createInterface({
       input: process.stdin,
