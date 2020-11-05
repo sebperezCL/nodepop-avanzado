@@ -3,10 +3,11 @@ const multer = require('multer');
 const router = express.Router();
 const Advertisement = require('../../models/Advertisement');
 const createError = require('http-errors');
+const cote = require('cote');
 
 const storage = multer.diskStorage({
-  destination: function( req, file, cb ) {
-    cb(null, 'public/images/');
+  destination: function(req, file, cb) {
+    cb(null, 'public/images/fullsize');
   },
   filename: function(req, file, cb) {
     const myFileName = `${Date.now()}_${file.originalname}`;
@@ -64,8 +65,8 @@ router.get('/:_id', async function(req, res, next) {
 /* Acá recibimos un nuevo anuncio para ser guardado en la db */
 router.post('/', upload.single('picture'), async function (req, res, next) {
   try {
+    console.log(req.body);
     const file = req.file;
-
     /* Creamos un nuevo anuncio usando el modelo, lo hacemos campo por campo
     para evitar que se introduzcan campos adicionales que no pertenecen
     al schema */
@@ -88,6 +89,14 @@ router.post('/', upload.single('picture'), async function (req, res, next) {
         next(createError(400, error.message));
         return;
       }
+    });
+    const requester = new cote.Requester({ name: 'Thumbnail Client'});
+    requester.send({
+      type: 'thumbnail create',
+      filename: file.filename,
+      size: '100'
+    }, resultado => {
+      console.log(`Resultado: ${resultado}`);
     });
 
   } catch (error) {

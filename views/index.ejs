@@ -91,19 +91,22 @@
               <th scope="col"><%= __('Price') %></th>
               <th scope="col"><%= __('Currency') %></th>
               <th scope="col"><%= __('Tags') %></th>
-              <th scope="col"><%= __('Image') %></th>
+              <th scope="col" colspan="2"><%= __('Image') %></th>
             </tr>
           </thead>
           <tbody>
             <% ads.advertisements.forEach(ad => { %>
-             <tr>
-              <td data-label="Nombre"><%=ad.name%></td>
-              <td data-label="Venta/Compra"><% if(ad.sell) {%> <%= __('Sell') %> <%} else { %> <%= __('Buy') %> <% }%> </td>
-              <td data-label="Precio"><%=ad.price %></td>
-              <td data-label="Moneda"><%=ad.currency %> </td>
-              <td data-label="Tags"><%=ad.tags %> </td>
-              <td data-label="Imagen"><a href="/images/<%=ad.picture %>" target="blank"><%= __('View') %></a></td>
-            </tr>
+              <tr>
+                <td data-label="<%= __('Name') %>"><%=ad.name%></td>
+                <td data-label="<%= __('Sell/Buy') %>"><% if(ad.sell) {%> <%= __('Sell') %> <%} else { %> <%= __('Buy') %> <% }%> </td>
+                <td data-label="<%= __('Price') %>"><%=ad.price %></td>
+                <td data-label="<%= __('Currency') %>"><%=ad.currency %></td>
+                <td data-label="<%= __('Tags') %>"><%=ad.tags %></td>
+                <td data-label="Thumb">
+                  <img class="thumbnail" src="/images/thumbs/<%=ad.picture %>" alt="<%= __('Article thumbnail image') %>">
+                </td>
+                <td data-label="<%= __('Image') %>"><a href="/images/fullsize/<%=ad.picture %>" target="blank"><%= __('View') %></a></td>
+              </tr>
             <% }) %>
           </tbody>
         </table>

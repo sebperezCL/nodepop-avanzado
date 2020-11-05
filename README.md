@@ -45,6 +45,28 @@ or simply http://localhost:3000/ and use the form to search the ads
 
 ## API Use
 
+**First of all: You need to authenticate to access the API methods**
+
+### Authentication
+
+POST /api/authenticate
+
+body:
+{
+  email: string,
+  password: string
+}
+
+Response:
+
+{
+    "tokenJWT": "xxxxx.yyyyyyy.zzzzzzz"
+}
+
+### Important!
+
+The following API methods **needs authentication**. The JWT token must be sent either in the header or in the body.
+
 ### List all advertisements
 
 GET /api/ads
