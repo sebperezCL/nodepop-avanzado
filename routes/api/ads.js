@@ -90,6 +90,7 @@ router.post('/', upload.single('picture'), async function (req, res, next) {
         return;
       }
     });
+
     const requester = new cote.Requester({ name: 'Thumbnail Client'});
     requester.send({
       type: 'thumbnail create',
@@ -98,9 +99,8 @@ router.post('/', upload.single('picture'), async function (req, res, next) {
     }, resultado => {
       console.log(`Resultado: ${resultado}`);
     });
-
   } catch (error) {
-    next(error);
+    return next(error);
   }
 });
 

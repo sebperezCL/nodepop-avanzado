@@ -3,7 +3,7 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> API para la venta de artículos de segunda mano
+> API to sell/buy used products
 
 ## Install
 
@@ -11,10 +11,24 @@
 npm install
 ```
 
+You will need to install pm2 to run the app and the microservices (the ecosystem). You can install it with the following command:
+
+```sh
+npm install pm2 -g
+```
+
 ## Usage
+
+To start the ecosystem
 
 ```sh
 npm start
+```
+
+To stop the ecosystem
+
+```sh
+npm run stop
 ```
 
 ## Dev run
